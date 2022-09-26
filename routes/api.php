@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EcoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', [EcoController::class, 'show']);
+
+Route::get('/dados',[EcoController::class, 'dados']);
+
+Route::get('/hello/{msg?}', function($msg)
+{
+    return response()->json(
+        [
+            "mensagem" => $msg
+        ],200);
 });
+
+
